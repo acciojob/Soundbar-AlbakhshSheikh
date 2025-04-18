@@ -1,21 +1,40 @@
 const sounds = ['applause', 'boo', 'gasp', 'tada', 'victory', 'wrong'];
 
+const buttons = document.getElementById('buttons');
+
 sounds.forEach(sound => {
-  const btns = document.querySelectorAll('.btn');
-  btns.forEach(btn => {
-    if (btn.textContent.trim() === sound) {
-      btn.addEventListener('click', () => {
-        stopSounds();
-        const audio = new Audio(`./sounds/${sound}.mp3`);
-        audio.play();
-      });
-    }
+  const btn = document.createElement('button');
+  btn.classList.add('btn');
+  btn.innerText = sound;
+
+  btn.addEventListener('click', () => {
+    stopSounds();
+    const audio = document.getElementById(sound);
+    audio.play();
   });
+
+  buttons.appendChild(btn);
+
+  const audio = document.createElement('audio');
+  audio.src = `sounds/${sound}.mp3`;
+  audio.id = sound;
+  document.body.appendChild(audio);
 });
 
-document.querySelector('.stop').addEventListener('click', stopSounds);
+// STOP BUTTON
+const stopBtn = document.createElement('button');
+stopBtn.classList.add('stop');
+stopBtn.innerText = 'stop';
 
+stopBtn.addEventListener('click', stopSounds);
+
+buttons.appendChild(stopBtn);
+
+// Function to stop all sounds
 function stopSounds() {
-  // There might not be any global audio tags, so stop new audio objects
-  // Optionally we can keep track of the audio being played
+  sounds.forEach(sound => {
+    const audio = document.getElementById(sound);
+    audio.pause();
+    audio.currentTime = 0;
+  });
 }

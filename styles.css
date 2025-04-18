@@ -1,7 +1,5 @@
-/*  your css code here. If applicable */
 body {
-  background-color: #a259d3;
-  font-family: sans-serif;
+  background-color: #a259e4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,21 +12,17 @@ body {
   gap: 20px;
 }
 
-.btn {
+.btn, .stop {
   background-color: #5e2ca5;
   color: white;
-  padding: 15px 25px;
   border: none;
+  padding: 15px 20px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background 0.3s;
 }
 
-.btn:hover {
-  background-color: #4c218c;
-}
-
-.stop {
-  background-color: #432874;
+.btn:hover, .stop:hover {
+  background-color: #3e1c78;
 }
